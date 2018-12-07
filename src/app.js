@@ -5,9 +5,13 @@ const mysql = require('mysql');
 const myConnection = require('express-myconnection');          //modulo path se encarga de unir directorios
 const app = express();
 
+//Importando Ruta
+const customerRoutes = require('./routes/customer');
+
+
+
 
 //Settinggs
-
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'ejs');//almacena todos los archivos que genera el motor de plantillas
 app.set('views', path.join(__dirname,'views')); //ubicando la direcciòn del archivo y uniendo los siguiente directorios, dirname se encarga de darme la ruta del archivo que lo ejecuta
@@ -24,7 +28,16 @@ app.use(myConnection(mysql,{
   database: 'crudnodejsmysql'
 },'single'));
 
+//Transformar los datos en formato Json
+//urlencoded: es el encargado de entender todos los datos que se envian desde un formulario
+//extended: false expresa que solo se envia texto
+app.use(express.urlencoded({extended: false}))
+
 //routes
+app.use('/',customerRoutes);
+
+//Arcivos staticos
+app.use(express.static(path.join(__dirname, 'public')));
 
 //https://www.youtube.com/watch?v=VxRXlUrV6y0
 //Ejecutando o Escuchando el servidor

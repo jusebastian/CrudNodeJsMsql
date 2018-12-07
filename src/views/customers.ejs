@@ -1,0 +1,61 @@
+<%
+  include partial/_header
+%>
+
+<!--<pre>
+  <%= data[0].id %> 
+</pre> Obteniendo los datos de la base de datos-->
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-7">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Address</th>
+              <th>Phone</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if(data) { %>
+              <% for(var i = 0; i < data.length; i++) { %>
+                <tr>
+                  <td><%= data[i].id %></td>
+                  <td><%= data[i].name %></td>
+                  <td><%= data[i].address %></td>
+                  <td><%= data[i].phone %></td>
+                  
+                </tr>
+              <% } %>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-5">
+        <div class="card">
+          <div class="card-body">
+              <form action="/add" method="post">
+                <div class="form-group">
+                  <input type="text" name="name" placeholder="Nombre" class="form-control">
+                </div>
+                <div class="form-group">
+                  <input type="text" name="address" placeholder="Dirección" class="form-control">
+                </div>
+                <div class="form-group">
+                  <input type="text" name="phone" placeholder="Teléfono" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-raised btn-primary">
+                  Guardar
+                </button>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>  
+
+<%
+  include partial/_footer
+%>
