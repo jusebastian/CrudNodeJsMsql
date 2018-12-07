@@ -8,7 +8,8 @@ const customerController = require('../controllers/customerController');
 
 //obtener ruta
 router.get('/', customerController.list);
-router.post('/add', customerController.save);
+router.post('/add/', customerController.save);
+router.get('/delete/:id', customerController.delete);
 
 
 

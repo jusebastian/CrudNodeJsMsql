@@ -33,14 +33,37 @@ controller.save = (req, res) => {
     con.query('INSERT INTO customer set ?', [data], (err, customers) => {
       //obtenermops
       console.log(customers);
-      res.send('work');
+      //res.send('work');
+      res.redirect('/');
     }); //cuando inserto los datos puedo obtener dos cosas un error o los mismo datos
     // insertar en la tabla customer los siguiente datos
   })
 
 }
+
 //
 //set: establecer nuevos datos cuando se insertan
 //para evitar SQLInyection se utiliza el signo ?  y se referencia los datos mendiante un array
 //exportando el controlador
+
+
+//Eliminar Datos
+controller.delete = (req, res) => {
+  const id = req.params.id;
+  //console.log(req.body);
+  //res.send("work");
+  req.getConnection((err, con) => {
+    if(err){
+      alert('No hubo conexiòn con la base de datos');
+    }
+    con.query('DELETE FROM customer WHERE id = ?', [id], (err, customers) => {
+      //obtenermops
+      console.log(customers);
+      //res.send('work');
+      res.redirect('/');
+    }); //cuando inserto los datos puedo obtener dos cosas un error o los mismo datos
+    // insertar en la tabla customer los siguiente datos
+  })
+
+}
 module.exports = controller;

@@ -15,6 +15,7 @@
               <th>Name</th>
               <th>Address</th>
               <th>Phone</th>
+              <th colspan="2">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -25,6 +26,9 @@
                   <td><%= data[i].name %></td>
                   <td><%= data[i].address %></td>
                   <td><%= data[i].phone %></td>
+                  <td><a class="btn btn-raised btn-warning" ><i class="far fa-edit"></i></a></td>
+                  <td><a class="btn btn-raised btn-danger" href="/delete/<%= data[i].id %>" ><i class="far fa-trash-alt"></i></a></td>
+                  
                   
                 </tr>
               <% } %>
