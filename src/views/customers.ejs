@@ -26,13 +26,15 @@
                   <td><%= data[i].name %></td>
                   <td><%= data[i].address %></td>
                   <td><%= data[i].phone %></td>
-                  <td><a class="btn btn-raised btn-warning" ><i class="far fa-edit"></i></a></td>
+                  <td><a class="btn btn-raised btn-warning" href="/update/<%= data[i].id %>"><i class="far fa-edit"></i></a></td>
                   <td><a class="btn btn-raised btn-danger" href="/delete/<%= data[i].id %>" ><i class="far fa-trash-alt"></i></a></td>
                   
                   
                 </tr>
               <% } %>
-            <% } %>
+            <% } else {  %> 
+                 alert("No hay datos");
+              <% } %>
           </tbody>
         </table>
       </div>

@@ -46,6 +46,38 @@ controller.save = (req, res) => {
 //para evitar SQLInyection se utiliza el signo ?  y se referencia los datos mendiante un array
 //exportando el controlador
 
+//Editando Datos
+controller.edit = (req, res) =>{
+  //recibiendo el id como parametro
+  const id = req.params.id;
+  //res.redirect('../views/customer_edit.ejs');
+  //res.send('Nueva Vista');
+
+  //conexion a la base de atos
+  req.getConnection((err, con) => {
+    con.query('SELECT * FROM customer WHERE id = ?', [id], (err, customers) => {
+      console.log(customers);
+      res.render('customer_edit.ejs', {
+        //asignar a data los datos
+        data: customers[0],
+      })
+    });
+  });
+};
+
+//Actualizar el dato
+controller.update = (req,res) => {
+  const id = req.params.id;
+  //se encarga de recibir los campos de un formulario
+  const newCustomer = req.body;
+
+  req.getConnection((err, con)=>{
+    con.query('UPDATE customer SET ? WHERE id = ?', [newCustomer, id], (err, customers) => {
+        res.redirect('/');
+    });
+  })
+}
+
 
 //Eliminar Datos
 controller.delete = (req, res) => {
